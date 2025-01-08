@@ -1,4 +1,5 @@
 flask
+gunicorn
 openpyxl
 matplotlib
 numpy
