@@ -1,3 +1,2 @@
-Flask
-openpyxl
-requests
+cd pass/to/thisfile
+flask run
