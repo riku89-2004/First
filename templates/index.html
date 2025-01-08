@@ -1,0 +1,84 @@
+<!--コメントはこうやって書く,必須はA,それ以外はB-->
+<!doctype html>
+<html lang="ja">
+    <head>
+        <!--基本設定-->
+        <meta charset="utf-8"> <!--A,文字の指定-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--A,古いブラウザで互換モードを使わず最新機能を有効にする。-->
+        <meta name="viewport" content="width=device-width,initial-scale=1"> <!--A,スマホやタブレットで見やすいように画面サイズを調整。-->
+        <!--基本設定 end-->
+
+        <!--SNS--
+        <meta name="twitter:card" content=""/>
+        <meta name="twitter:site" content="Twitter"/>
+        <meta property="og:url" content=""/>
+        <meta property="og:title" content="LINEで表示されるタイトル"/>
+        <meta property="og:description" content="LINEでの説明"/>
+        <meta property="og:image" content="佐胸のリンク"/>
+        <link rel="icon" href="アイコン画像のリンク">
+        --SNS end-->
+
+        <link rel="icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">
+        <link rel="apple-touch-icon" href="{{url_for('static', filename='apple-touch-icon.png')}}">
+        <link rel="icon" sizes="192x192" href="{{url_for('static', filename='android-chrome-192x192.png')}}">
+
+
+        <title>五種目測定確認ツール</title>
+        <meta name="description" content="12月末に行われた5種目の分析？ができます。"/> <!--B,検索結果に表示される文字-->
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </head>
+    <body>
+        <header></header>
+        <div class="main_contents">
+            <div class="app_area">
+                <form action="/" method="post">
+                    <h1>5種目測定 2024</h1>
+                    <label for="main-category">名前を選んでください</label><br>
+                    <select id="main-category" name = "mainCategory">
+                        <option value="">--学年--</option>
+                        <option value="OTEith">1年</option>
+                        <option value="OTSeth">2年</option>
+                        <option value="OTSith">3年</option>
+                    </select>
+
+                    <!-- 小分類 -->
+                    <label for="sub-category"></label>
+                    <select id="sub-category" name="selectedName">
+                        <option value="">--名前--</option>
+                    </select>
+
+                    <h3>比較対処を選んでください</h3>
+                    <input type="radio" id="type1" name="selectedType" value="Average1" required>
+                    <label for="type1">Men's Average</label><br>
+                    <input type="radio" id="type2" name="selectedType" value="Average2" required>
+                    <label for="type2">Women's Average</label><br>
+                    <input type="radio" id="type3" name="selectedType" value="Average3" required>
+                    <label for="type3">2000M top8(time)'s Average</label><br>
+                    <input type="radio" id="type4" name="selectedType" value="Average4" required>
+                    <label for="type4">2000M top8(idt)'s Average</label><br>
+                    <input type="radio" id="type5" name="selectedType" value="Average5" required>
+                    <label for="type5">20min top8's Average</label><br>
+                    <button type="submit" class="btn">作成</button>
+                </form>
+            </div　class= graph_area>
+                <h2>画像は以下に生成されます</h2>
+                <img src="{{ img_path }}" alt="Radar Chart">
+            <div class="explain">
+                <h2>このサイトの使い方</h2>
+                <p>このサイトでは2000Mのスコアを100点とした時の他の種目の相対的なスコアをラダーチャートとして表示します。</p>
+                <p>まず、計算したい人の名前を選んでください。5種目を提出しきっていない人はエラーになると思います。</p>
+                <p>次に、比較対象を選び、最後に作成ボタンを押してください。</p>
+                <p class="attention">※相対的なスコアの分布なので、グラフの面積が小さいからといってタイムが遅いというわけではないことに注意してください</p>
+                <p class="attention"> 現在参照しているファイル: 5種目測定　12/27/2024</p>
+            </div>
+        </div>
+        <footer></footer>
+    </body>
+</html>

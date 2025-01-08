@@ -1,0 +1,46 @@
+body{
+    margin-left: 5px;
+    font-family: serif;
+}
+
+.main_contents{
+    background-color: rgba(200,255,200.0.6)
+}
+
+.app_area h3{
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.graph_area h2{
+    font-weight: normal;
+    font-size: 24px;
+}
+
+.explain h2{
+    font-weight: normal;
+    font-size: 24px;
+}
+
+.explain p{
+    font-size: 14px;
+    padding: 2px 0px 2px 0px
+}
+
+.attention{
+    color: grey;
+}
+
+.btn {
+    background-color: #aaa;
+    padding: 8px 24px;
+    color: black;
+    display: inline-block;
+    opacity: 0.8;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.btn:hover {
+    opacity: 1;
+}

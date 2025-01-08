@@ -1,0 +1,9 @@
+{
+    "20sec": "Sheet1",
+    "60sec": "Sheet2",
+    "2000m": "Sheet3",
+    "20min": "Sheet4",
+    "60min": "Sheet5",
+    "abekenta": ["G3","G4","W4","K3","K3"],
+    "Average": ["G2","G2","W2","K2","K2"]
+}
