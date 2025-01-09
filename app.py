@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jan  1 10:04:55 2025
-Last Change on Tue Jan  8 01:10:25 2025
+Last Change on Tue Jan  8 10:02:40 2025
 
 @author: 流空
 """
@@ -20,7 +20,7 @@ import datetime
 app = Flask(__name__)
 
 DEBUG = False #True
-checkbox = False
+checkbox = None
 
 Skills = ["20sec", "60sec", "2000m", "20min", "60min"]
 output_path = os.path.join("static", "graph.png")
@@ -94,7 +94,9 @@ def time_to_watt(time_value):
     return watt
 
 def ratio_watt(values1, values2 ,checkbox):
-    if checkbox:
+   if checkbox == "on":
+        values1 = list(map(int, values1))
+        values2 = list(map(int, values2))
         ratio_list = [round((v1 / v2) * 100, 2) for v1, v2 in zip(values1, values2)]
         return ratio_list
     else:
@@ -167,9 +169,11 @@ def index():
     if request.method == "POST":
         selected_name = request.form.get("selectedName")
         selected_type = request.form.get("selectedType")
+        checkbox = request.form.get("calculationMethod")
 
         debug_print(f"Selected name: {selected_name}") 
         debug_print(f"Selected type: {selected_type}")
+        debug_print(f"option: {checkbox}")
 
         Getlist = read_excel(selected_name)
         Compare_list = read_excel(selected_type)
