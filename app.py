@@ -20,6 +20,7 @@ import datetime
 app = Flask(__name__)
 
 DEBUG = False #True
+checkbox = False
 
 Skills = ["20sec", "60sec", "2000m", "20min", "60min"]
 output_path = os.path.join("static", "graph.png")
@@ -92,18 +93,22 @@ def time_to_watt(time_value):
     watt = 2.80 / (total_seconds / 500)**3
     return watt
 
-def ratio_watt(values):
-    # 3番目の項目（インデックス2）を取得
-    third_item = values[2]
-    index_values = [1.73, 1.53, 1, 0.85, 0.76]
-    if third_item == 0:
-        raise ValueError("The third item in the list cannot be zero.")
+def ratio_watt(values1, values2 ,checkbox):
+    if checkbox:
+        ratio_list = [round((v1 / v2) * 100, 2) for v1, v2 in zip(values1, values2)]
+        return ratio_list
+    else:
+        # 3番目の項目（インデックス2）を取得
+        third_item = values1[2]
+        index_values = [1.73, 1.53, 1, 0.85, 0.76]
+        if third_item == 0:
+            raise ValueError("The third item in the list cannot be zero.")
 
-    # 各項目を3番目の項目で割り、100倍し、小数点3位で四捨五入する
-    percent_list = [round((x / third_item) * 100, 3) for x in values]
-    # 各項目をindex_valuesの対応する項目で割り、小数点2位で四捨五入する
-    ratio_list = [round(p / idx, 2) for p, idx in zip(percent_list, index_values)]
-    return ratio_list
+        # 各項目を3番目の項目で割り、100倍し、小数点3位で四捨五入する
+        percent_list = [round((x / third_item) * 100, 3) for x in values1]
+        # 各項目をindex_valuesの対応する項目で割り、小数点2位で四捨五入する
+        ratio_list = [round(p / idx, 2) for p, idx in zip(percent_list, index_values)]
+        return ratio_list
 
 
 def debug_print(message):
@@ -172,8 +177,8 @@ def index():
         debug_print(f"Getlist: {Getlist}")
         debug_print(f"Compare_list: {Compare_list}")
 
-        Ratio_listA = ratio_watt(Getlist)
-        Ratio_listB = ratio_watt(Compare_list)
+        Ratio_listA = ratio_watt(Getlist, Compare_list, checkbox)
+        Ratio_listB = ratio_watt(Compare_list, Compare_list, checkbox)
 
         Ratio_listA = list(map(int, Ratio_listA))
         Ratio_listB = list(map(int, Ratio_listB))
