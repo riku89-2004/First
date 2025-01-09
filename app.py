@@ -94,7 +94,7 @@ def time_to_watt(time_value):
     return watt
 
 def ratio_watt(values1, values2 ,checkbox):
-   if checkbox == "on":
+    if checkbox == "on":
         values1 = list(map(int, values1))
         values2 = list(map(int, values2))
         ratio_list = [round((v1 / v2) * 100, 2) for v1, v2 in zip(values1, values2)]
