@@ -65,6 +65,9 @@
                     <label for="type4">2000M top8(idt)'s Average</label><br>
                     <input type="radio" id="type5" name="selectedType" value="Average5" required>
                     <label for="type5">20min top8's Average</label><br>
+                    <label>
+                        <input type="checkbox" name="calculationMethod" value="on">option
+                    </label><br>
                     <button type="submit" class="btn">作成</button>
                 </form>
             </div　class= graph_area>
@@ -73,9 +76,11 @@
             <div class="explain">
                 <h2>このサイトの使い方</h2>
                 <p>このサイトでは2000Mのスコアを100点とした時の他の種目の相対的なスコアをラダーチャートとして表示します。</p>
+                <p>選択したAverageのスコアを100点としたときの自分の相対的なスコアを見たい場合optionにチェックを入れてください。</p>
                 <p>まず、計算したい人の名前を選んでください。5種目を提出しきっていない人はエラーになると思います。</p>
                 <p>次に、比較対象を選び、最後に作成ボタンを押してください。</p>
                 <p class="attention">※相対的なスコアの分布なので、グラフの面積が小さいからといってタイムが遅いというわけではないことに注意してください</p>
+                <p class="attention">optionにチェックを入れた場合は面積が大きいほど速いということになります</p>
                 <p class="attention"> 現在参照しているファイル: 5種目測定　12/27/2024</p>
             </div>
         </div>
