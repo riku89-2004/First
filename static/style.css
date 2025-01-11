@@ -44,3 +44,7 @@ body{
 .btn:hover {
     opacity: 1;
 }
+
+.old{
+    text-decoration: line-through;
+}
