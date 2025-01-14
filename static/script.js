@@ -26,7 +26,7 @@
           { value: "ishikawa", text: "石川"},
           { value: "kasahara", text: "笠原" },
           { value: "kaneko", text: "金子"},
-          { value: "timura", text: "木村"},
+          { value: "kimura", text: "木村"},
           { value: "koito", text: "小糸"},
           { value: "shikata", text: "志方"},
           { value: "takao", text: "高尾"},
