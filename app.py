@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jan  1 10:04:55 2025
-Last Change on Tue Jan  8 10:02:40 2025
+Last Change on Tue Jan  19 13:44:50 2025
 
 @author: 流空
 """
@@ -10,6 +10,7 @@ import os
 import json
 import openpyxl
 from flask import Flask, render_template, request # type: ignore
+from flask import jsonify
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt # type: ignore
@@ -23,7 +24,7 @@ DEBUG = False #True
 checkbox = None
 
 Skills = ["20sec", "60sec", "2000m", "20min", "60min"]
-output_path = os.path.join("static", "graph.png")
+output_path = os.path.join("static", "graph.png").replace("\\", "/")
 file_path = os.path.join(os.path.dirname(__file__), "store", "5challenges.xlsx")
 
 
@@ -192,13 +193,17 @@ def index():
 
         if len(Ratio_listA) < 5 or len(Ratio_listB) < 5:
             debug_print("足りんが")
-            return render_template("index.html", message="データが不完全です。")
+            return jsonify({"message": "データが不完全です。"})
+        
         try:
             create_radar_chart(Skills, Ratio_listB, Ratio_listA, output_path)
         except Exception as e:
-            debug_print(f"Radar chart creation failed: {e}")
-            return render_template("index.html", message=f"グラフ作成中にエラーが発生しました: {e}")
-    return render_template("index.html", message = message, img_path = output_path)
+            return jsonify({"message": f"グラフ作成中にエラーが発生しました: {e}"})
+        return jsonify({"message": "グラフが正常に作成されました。", "img_path": f"/{output_path}"})
+
+    # **GETリクエストの時だけHTMLを表示**
+    return render_template("index.html", message=message, img_path=output_path)
+
 
 
 if __name__ == "__main__":

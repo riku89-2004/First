@@ -23,68 +23,29 @@
         <link rel="icon" sizes="192x192" href="{{url_for('static', filename='android-chrome-192x192.png')}}">
 
 
-        <title>五種目測定確認ツール</title>
-        <meta name="description" content="12月末に行われた5種目の分析？ができます。起動に時間がかかる場合一度閉じて開きなおしてください。"/> <!--B,検索結果に表示される文字-->
+        <title>エルゴの</title>
+        <meta name="description" content="12月末に行われた5種目の分析？ができます。"/> <!--B,検索結果に表示される文字-->
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+        
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
         <script src="{{ url_for('static', filename='script.js') }}"></script>
     </head>
     <body>
         <header></header>
-        <div class="main_contents">
-            <div class="app_area">
-                <form action="/" method="post">
-                    <h1>5種目測定 2024</h1>
-                    <label for="main-category">名前を選んでください</label><br>
-                    <select id="main-category" name = "mainCategory">
-                        <option value="">--学年--</option>
-                        <option value="OTEith">1年</option>
-                        <option value="OTSeth">2年</option>
-                        <option value="OTSith">3年</option>
-                    </select>
+        <button onclick="openDialog('content1')" class="btn btn_contents">5種目測定</button>
+        <button onclick="openDialog('content2')" class="btn btn_contents">3750m</button>
 
-                    <!-- 小分類 -->
-                    <label for="sub-category"></label>
-                    <select id="sub-category" name="selectedName">
-                        <option value="">--名前--</option>
-                    </select>
-
-                    <h3>比較対処を選んでください</h3>
-                    <input type="radio" id="type1" name="selectedType" value="Average1" required>
-                    <label for="type1">Men's Average</label><br>
-                    <input type="radio" id="type2" name="selectedType" value="Average2" required>
-                    <label for="type2">Women's Average</label><br>
-                    <input type="radio" id="type3" name="selectedType" value="Average3" required>
-                    <label for="type3">2000M top8(time)'s Average</label><br>
-                    <input type="radio" id="type4" name="selectedType" value="Average4" required>
-                    <label for="type4">2000M top8(idt)'s Average</label><br>
-                    <input type="radio" id="type5" name="selectedType" value="Average5" required>
-                    <label for="type5">20min top8's Average</label><br>
-                    <label>
-                        <input type="checkbox" name="calculationMethod" value="on">option
-                    </label><br>
-                    <button type="submit" class="btn">作成</button>
-                </form>
-            </div　class= graph_area>
-                <h2>画像は以下に生成されます</h2>
-                <img src="{{ img_path }}" alt="Radar Chart">
-            <div class="explain">
-                <h2>このサイトの使い方</h2>
-                <p>このサイトでは2000Mのスコアを100点とした時の他の種目の相対的なスコアをラダーチャートとして表示します。</p>
-                <p>選択したAverageのスコアを100点としたときの自分の相対的なスコアを見たい場合optionにチェックを入れてください。</p>
-                <p>まず、計算したい人の名前を選んでください。5種目を提出しきっていない人はエラーになると思います。</p>
-                <p>次に、比較対象を選び、最後に作成ボタンを押してください。</p>
-                <p class="attention">※相対的なスコアの分布なので、グラフの面積が小さいからといってタイムが遅いというわけではないことに注意してください</p>
-                <p class="attention">optionにチェックを入れた場合は面積が大きいほど速いということになります</p>
-                <p class="attention old"> 現在参照しているファイル: 5種目測定　12/27/2024</p>
-                <p class="attention"> 現在参照しているファイル: 5種目測定　01/11/2025</p>
+        <div id="dialog" class="dialog-overlay">
+            <div class="dialog-content" id="dialog-content">
+                <!-- 動的コンテンツがここに挿入されます -->
             </div>
         </div>
+
         <footer></footer>
     </body>
 </html>
