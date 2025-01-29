@@ -199,7 +199,7 @@ def index():
             create_radar_chart(Skills, Ratio_listB, Ratio_listA, output_path)
         except Exception as e:
             return jsonify({"message": f"グラフ作成中にエラーが発生しました: {e}"})
-        return jsonify({"message": "グラフが正常に作成されました。", "img_path": f"/{output_path}"})
+        return jsonify({"img_path": f"/{output_path}"})
 
     # **GETリクエストの時だけHTMLを表示**
     return render_template("index.html", message=message, img_path=output_path)
